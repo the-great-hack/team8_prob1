@@ -9,5 +9,6 @@ import com.courioo.driver.models.User
 interface SmsRideView {
     fun onError(s: String)
     fun onUserFound(user: User)
+    fun onDriverFound(user: User)
     fun onRideRequest(smsRide: SmsRide)
 }

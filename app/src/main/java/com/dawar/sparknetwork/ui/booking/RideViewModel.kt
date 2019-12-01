@@ -15,7 +15,7 @@ class RideViewModel(
     BaseViewModel<SmsRideView>() {
 
     init {
-        mUserRepository.saveUser(User("Careem User"))
+        mUserRepository.saveUser(User("Khwaja Qasim"))
     }
 
     private val mUserData = MutableLiveData<User>()

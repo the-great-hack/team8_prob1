@@ -34,8 +34,8 @@ class GPSLocation(private val activity: Activity) : LocationListener {
     }
 
     fun getUserLocation() = com.courioo.driver.models.Location().apply {
-        latitude = location?.latitude
-        longitude = location?.longitude
+        lat = location?.latitude
+        lng = location?.longitude
     }
 
 

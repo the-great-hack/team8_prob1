@@ -34,6 +34,7 @@ class SmsRideBookingFragment : BaseFragment(),
         mDriverViewModel.apply {
             getRideBookedData().observe(this@SmsRideBookingFragment, mRideRequestObserver)
             getUserData().observe(this@SmsRideBookingFragment, mUserObserver)
+            getDriverData().observe(this@SmsRideBookingFragment, mDriverObserver)
             getErrorData().observe(this@SmsRideBookingFragment, mErrorObserver)
             attachView(this@SmsRideBookingFragment)
             getUser("2")
@@ -71,22 +72,36 @@ class SmsRideBookingFragment : BaseFragment(),
             0 -> "ACCEPT"
             1 -> "RIDE ACCEPTED"
             2 -> "RIDE PICKED"
-            3 -> "RIDE COMPLETE"
+            3 -> {
+                tvInfo.text = null
+
+                "RIDE COMPLETE"
+            }
             else -> "ONLINE"
         }
     }
 
 
     override fun onRideRequest(smsRide: SmsRide) {
-        updateButton(smsRide.rideStatus)
+        updateButton(smsRide.status)
+        mDriverViewModel.getUser("1")
+
     }
 
+    private fun updateUserDataUI(user: User) {
+        val data = "${user.name} \n ${user.phone}"
+        tvInfo.text = data
+    }
 
     override fun onError(s: String) {
         showToast(s)
     }
 
     override fun onUserFound(user: User) {
+        updateUserDataUI(user)
+    }
+
+    override fun onDriverFound(user: User) {
         showToast("Welcome ${user.name}")
     }
 }

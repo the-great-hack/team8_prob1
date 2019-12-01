@@ -84,7 +84,7 @@ class SmsRideBookingFragment : BaseFragment(),
 
     override fun onRideListener(smsRide: SmsRide) {
 
-        val msg = when (smsRide.rideStatus) {
+        val msg = when (smsRide.status) {
             0 -> "RIDE REQUESTED"
             1 -> "RIDE ACCEPTED"
             2 -> "RIDE PICKED"

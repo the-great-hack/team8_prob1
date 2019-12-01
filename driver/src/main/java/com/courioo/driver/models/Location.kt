@@ -1,6 +1,6 @@
 package com.courioo.driver.models
 
 class Location {
-    var latitude: Double? = null
-    var longitude: Double? = null
+    var lat: Double? = null
+    var lng: Double? = null
 }

@@ -17,10 +17,13 @@ class DriverViewModel(
 
 
     private val mUserData = MutableLiveData<User>()
+    private val mDriverData = MutableLiveData<User>()
     private val mRideRequestData = MutableLiveData<SmsRide>()
     private val mError = MutableLiveData<String>()
 
     fun getUserData() = mUserData as LiveData<User?>
+
+    fun getDriverData() = mDriverData as LiveData<User?>
 
     fun getRideBookedData() = mRideRequestData as LiveData<SmsRide>
 
@@ -34,9 +37,15 @@ class DriverViewModel(
     }
 
     val mUserObserver: Observer<in User?> = Observer {
-        if (it != null)
+        if (it != null) {
             getView().onUserFound(it)
-        else mError.postValue("User not found")
+        } else mError.postValue("User not found")
+    }
+
+    val mDriverObserver: Observer<in User?> = Observer {
+        if (it != null) {
+            getView().onDriverFound(it)
+        } else mError.postValue("Driver not found")
     }
 
     init {
@@ -61,12 +70,15 @@ class DriverViewModel(
     }
 
     fun getUser(id: String) {
-
         mUserRepository.getUser(id) {
             if (it == null)
                 mError.postValue("User not found")
-            else
-                mUserData.postValue(it)
+            else {
+                if (id == "2")
+                    mDriverData.postValue(it)
+                else
+                    mUserData.postValue(it)
+            }
         }
     }
 }

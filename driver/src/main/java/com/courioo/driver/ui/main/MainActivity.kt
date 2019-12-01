@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                 RideRepository.getInstance()
             }
         }
-        // start Koin!
+        // start Koin
         startKoin {
             // declare used Android context
             androidContext(applicationContext)

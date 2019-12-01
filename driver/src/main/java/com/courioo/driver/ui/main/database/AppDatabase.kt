@@ -14,7 +14,7 @@ class AppDatabase private constructor() {
     private val dbRootRef = database.reference
     private val usersNode = dbRootRef.child("Users")
     private val ridesNode by lazy { usersNode.child(userId).child("rides") }
-    private val rideStatusNode by lazy { ridesNode.child("SmsRide").child("rideStatus") }
+    private val rideStatusNode by lazy { ridesNode.child("SmsRide").child("status") }
     private lateinit var onUser: ((User?) -> Unit)
     private lateinit var onRideRequest: (SmsRide) -> Unit
     private lateinit var userId: String
